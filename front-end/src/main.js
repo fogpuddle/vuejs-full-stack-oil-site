@@ -1,0 +1,49 @@
+import { createApp } from 'vue'
+import App from './App.vue'
+import './main.css';
+import * as VueRouter from 'vue-router'
+import ShoppingCartPage from './pages/ShoppingCartPage.vue'
+import ProductsPage from './pages/ProductsPage.vue'
+import ProductDetailPage from './pages/ProductDetailPage.vue'
+import NotFoundPage from './pages/NotFoundPage.vue';
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAZnRM1tZF5oweoXajkFz3HVjxzK-DLsoo",
+  authDomain: "vue-full-stack-site-84577.firebaseapp.com",
+  projectId: "vue-full-stack-site-84577",
+  storageBucket: "vue-full-stack-site-84577.firebasestorage.app",
+  messagingSenderId: "1023453397021",
+  appId: "1:1023453397021:web:4583cea0ab31a806b0c6f4"
+};
+
+// Initialize Firebase
+initializeApp(firebaseConfig);
+
+createApp(App)
+.use(VueRouter.createRouter({
+  history: VueRouter.createWebHistory(process.env.BASE_URL),
+  routes: [{
+    path: '/cart',
+    component: ShoppingCartPage,
+  }, {
+    path: '/',
+    redirect: '/products',
+  }, {
+    path: '/products',
+    component: ProductsPage,
+  },
+  {
+    path: '/products/:productId',
+    component: ProductDetailPage,
+  }, {
+    path: '/:pathMatch(.*)*',
+    component: NotFoundPage,
+  }]
+}))
+.mount('#app')
