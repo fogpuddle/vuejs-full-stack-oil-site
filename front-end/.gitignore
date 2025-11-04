@@ -3,6 +3,10 @@ node_modules
 /dist
 
 
+#env files
+back-end/.env
+front-end/.env
+
 # local env files
 .env.local
 .env.*.local
